@@ -1,0 +1,31 @@
+# config/packages/security.yaml
+security:
+    # ...
+
+    providers:
+        app_user_provider:
+            entity:
+                class: App\Entity\User
+                property: email
+    # ...
+    firewalls:
+        dev:
+            pattern: ^/(_(profiler|wdt)|css|images|js)/
+            security: false
+        main:
+            lazy: true
+            # provider that you set earlier inside providers
+            provider: app_user_provider
+            
+
+            # activate different ways to authenticate
+            # https://symfony.com/doc/current/security.html#firewalls-authentication
+
+            # https://symfony.com/doc/current/security/impersonating_user.html
+            # switch_user: true
+
+    password_hashers:
+        # Use native password hasher, which auto-selects and migrates the best
+        # possible hashing algorithm (which currently is "bcrypt")
+        Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface: 'auto'        
+
