@@ -1,18 +1,44 @@
 
 {% block title %}Inscription{% endblock %}
 
+
+<link rel="stylesheet" href="./css/login.css" /> 
+
 {% block body %}
-    <div class="container mt-5">
+     <div class="container">
         <div class="row justify-content-center">
             <div class="col-md-8">
                 <div class="card">
-                    <div class="card-header">{{ block('title') }}</div>
                     <div class="card-body">
                         {% for flash_error in app.flashes('verify_email_error') %}
                             <div class="alert alert-danger" role="alert">{{ flash_error }}</div>
                         {% endfor %}
 
-                        {{ form_start(registrationForm) }}
+                         {{ form_start(registrationForm) }}
+                            <div class="form-group">
+                                {{ form_row(registrationForm.username, {
+                                    'attr': {
+                                        'class': 'form-control',
+                                        'placeholder': 'Prenom',
+                                    },
+                                    'label': 'Prenom',
+                                }) }}
+                                {{ form_row(registrationForm.lastname, {
+                                    'attr': {
+                                        'class': 'form-control',
+                                        'placeholder': 'Nom',
+                                    },
+                                    'label': 'Nom',
+                                }) }}                                                            
+
+                                {{ form_row(registrationForm.Pseudo, {
+                                    'attr': {
+                                        'class': 'form-control',
+                                        'placeholder': 'Pseudo',
+                                    },
+                                    'label': 'Pseudo',
+                                }) }}
+
                             <div class="form-group">
                                 {{ form_row(registrationForm.email, {
                                     'attr': {
@@ -42,7 +68,7 @@
                                 }) }}
                             </div>
 
-                            <button type="submit" class="btn btn-primary">S'inscrire</button>
+                            <button type="submit" class="btn btn-success">S'inscrire</button>
                         {{ form_end(registrationForm) }}
                     </div>
                 </div>
